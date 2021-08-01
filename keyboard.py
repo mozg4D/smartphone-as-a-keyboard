@@ -96,9 +96,10 @@ def not_found(e):
     if thread.is_alive(): thread.cancel()
     cancel_thread=True
     btn_code=request.url.partition(':5000/'+password)[2]
-    if(btn_code[1:] == ''):return ('', 204)
+    if(btn_code[1:] == ''): return ('', 204)
+    if(btn_code[0:3]=='p10'): shift_pressed=True
+    if(btn_code[0:3]=='u10'): shift_pressed=False
     if(btn_code[0] == 'p'):
-        if(btn_code[1:3]=='10'): shift_pressed=True
         if(len(btn_code)==4 and shift_pressed==False): Press( int( '0x10', 16 ) )
         Press( int( '0x' + btn_code[1:3], 16 ) )
         if(btn_code[1:3] != '11' and btn_code[1:3] != '12' and btn_code[1:3] != '10'): #ctrl alt shift
@@ -107,8 +108,9 @@ def not_found(e):
             thread.start()
     if(btn_code[0] == 'u'):
         if(len(btn_code)==4 and shift_pressed==False): Release( int( '0x10', 16 ) )
-        if(btn_code[1:3]=='10'):shift_pressed=False
         Release( int( '0x' + btn_code[1:3], 16 ) )
     return ('', 204)
 
-if __name__ == '__main__': app.run(host="0.0.0.0")
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)
