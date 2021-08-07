@@ -5,7 +5,7 @@ keyboard.zip - compiled standalone executable
 
 English and Russian languages supported
 
-Run python script, open path.svg, scan QR code, open link in android browser
+Run keyboard.exe, open path.svg, scan QR code, open link in android browser
 
 Smartphone and computer must be connected to wifi
 
@@ -16,8 +16,6 @@ Install chrome beta, add it to game turbo and remove touch restricted areas if k
 Add to startup, run as administrator
 
 Add to home screen (in android chrome menue)
-
-phone and computer must be connected to same wifi network
 
 to make standalone exe:
 pyinstaller --ico=ico.ico --noconsole keyboard.py
