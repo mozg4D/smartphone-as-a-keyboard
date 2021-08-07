@@ -1,167 +1,261 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no"><link rel="icon" href=logo.png>
 <style>div{display:flex;position:relative;width:calc(9.0909% - 2px);height:calc(20% - 2px);border:1px solid #333;justify-content:center;align-items:center;font-size:4vw;float:left;color:#777;background-color:#000}</style>
 <body style=margin:0;font-family:helvetica;user-select:none;touch-action:none>
-<div id=b00  ontouchstart="key_down(this, '31')" ontouchend="key_up(this, '31')">1</div>
-<div id=b01  ontouchstart="key_down(this, '32')" ontouchend="key_up(this, '32')">2</div>
-<div id=b02  ontouchstart="key_down(this, '33')" ontouchend="key_up(this, '33')">3</div>
-<div id=b03  ontouchstart="key_down(this, '34')" ontouchend="key_up(this, '34')">4</div>
-<div id=b04  ontouchstart="key_down(this, '35')" ontouchend="key_up(this, '35')">5</div>
-<div id=b05  ontouchstart="key_down(this, '36')" ontouchend="key_up(this, '36')">6</div>
-<div id=b06  ontouchstart="key_down(this, '37')" ontouchend="key_up(this, '37')">7</div>
-<div id=b07  ontouchstart="key_down(this, '38')" ontouchend="key_up(this, '38')">8</div>
-<div id=b08  ontouchstart="key_down(this, '39')" ontouchend="key_up(this, '39')">9</div>
-<div id=b09  ontouchstart="key_down(this, '30')" ontouchend="key_up(this, '30')">0</div>
-<div id=b010 ontouchstart="key_down(this, '08')" ontouchend="key_up(this, '08')">⌫</div>
+<div style='position:absolute;width:100%;height:100%;z-index:99;font-size:12vw' ontouchend
 
-<div id=b10  ontouchstart="key_down(this, '51')" ontouchend="key_up(this, '51')">q</div>
-<div id=b11  ontouchstart="key_down(this, '57')" ontouchend="key_up(this, '57')">w</div>
-<div id=b12  ontouchstart="key_down(this, '45')" ontouchend="key_up(this, '45')">e</div>
-<div id=b13  ontouchstart="key_down(this, '52')" ontouchend="key_up(this, '52')">r</div>
-<div id=b14  ontouchstart="key_down(this, '54')" ontouchend="key_up(this, '54')">t</div>
-<div id=b15  ontouchstart="key_down(this, '59')" ontouchend="key_up(this, '59')">y</div>
-<div id=b16  ontouchstart="key_down(this, '55')" ontouchend="key_up(this, '55')">u</div>
-<div id=b17  ontouchstart="key_down(this, '49')" ontouchend="key_up(this, '49')">i</div>
-<div id=b18  ontouchstart="key_down(this, '4f')" ontouchend="key_up(this, '4f')">o</div>
-<div id=b19  ontouchstart="key_down(this, '50')" ontouchend="key_up(this, '50')">p</div>
-<div id=b110 ontouchstart="key_down(this, '1b')" ontouchend="key_up(this, '1b')">⎋</div>
+="document.body.requestFullscreen(); screen.orientation.lock('landscape'); this.style.display='none'">Tap</div>
+<div id=b00  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b01  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b02  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b03  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b04  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b05  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b06  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b07  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b08  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b09  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b010 ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='⌫'>⌫</div>
 
-<div id=b20  ontouchstart="key_down(this, '41')" ontouchend="key_up(this, '41')">a</div>
-<div id=b21  ontouchstart="key_down(this, '53')" ontouchend="key_up(this, '53')">s</div>
-<div id=b22  ontouchstart="key_down(this, '44')" ontouchend="key_up(this, '44')">d</div>
-<div id=b23  ontouchstart="key_down(this, '46')" ontouchend="key_up(this, '46')">f</div>
-<div id=b24  ontouchstart="key_down(this, '47')" ontouchend="key_up(this, '47')">g</div>
-<div id=b25  ontouchstart="key_down(this, '48')" ontouchend="key_up(this, '48')">h</div>
-<div id=b26  ontouchstart="key_down(this, '4a')" ontouchend="key_up(this, '4a')">j</div>
-<div id=b27  ontouchstart="key_down(this, '4b')" ontouchend="key_up(this, '4b')">k</div>
-<div id=b28  ontouchstart="key_down(this, '4c')" ontouchend="key_up(this, '4c')">l</div>
-<div id=b29  ontouchstart="key_down(this, 'ba')" ontouchend="key_up(this, 'ba')">;</div>
-<div id=b210 ontouchstart="key_down(this, '0d')" ontouchend="key_up(this, '0d')" style=font-size:6vw><span style=position:relative;top:-.3vw>⏎</span></div>
+<div id=b10  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b11  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b12  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b13  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b14  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b15  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b16  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b17  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b18  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b19  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b110 ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='⎋'>⎋</div>
 
-<div id=b40  ontouchstart="key_down(this, '10')" ontouchend="key_up(this, '10')" style=z-index:10>sh</div>
-<div id=b31  ontouchstart="key_down(this, '5a')" ontouchend="key_up(this, '5a')">z</div>
-<div id=b32  ontouchstart="key_down(this, '58')" ontouchend="key_up(this, '58')">x</div>
-<div id=b33  ontouchstart="key_down(this, '43')" ontouchend="key_up(this, '43')">c</div>
-<div id=b34  ontouchstart="key_down(this, '56')" ontouchend="key_up(this, '56')">v</div>
-<div id=b35  ontouchstart="key_down(this, '42')" ontouchend="key_up(this, '42')">b</div>
-<div id=b36  ontouchstart="key_down(this, '4e')" ontouchend="key_up(this, '4e')">n</div>
-<div id=b37  ontouchstart="key_down(this, '4d')" ontouchend="key_up(this, '4d')">m</div>
-<div id=b38  ontouchstart="key_down(this, 'bc')" ontouchend="key_up(this, 'bc')">,</div>
-<div id=b39  ontouchstart="key_down(this, '26')" ontouchend="key_up(this, '26')" style=font-size:6vw><span style=position:relative;top:-.8vw>↑</span></div>
-<div id=b310 ontouchstart="key_down(this, 'be')" ontouchend="key_up(this, 'be')">.</div>
+<div id=b20  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b21  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b22  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b23  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b24  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b25  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b26  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b27  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b28  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b29  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b210 ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='⏎' style=font-size:6vw><span style=position:relative;top:-.3vw>⏎</span></div>
 
-<div id=b40  ontouchstart="key_down(this, '11')" ontouchend="key_up(this, '11')" style=z-index:10>ct</div>
-<div id=b41  ontouchstart="key_down(this, '12')" ontouchend="key_up(this, '12')" style=z-index:10>al</div>
+<div id=b30  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='sh' style=z-index:10>sh</div>
+<div id=b31  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b32  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b33  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b34  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b35  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b36  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b37  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b38  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b39  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='↑' style=font-size:6vw><span style=position:relative;top:-.8vw>↑</span></div>
+<div id=b310 ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+
+<div id=b40  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='ct' style=z-index:10>ct</div>
+<div id=b41  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='al' style=z-index:10>al</div>
 <div id=b42  ontouchstart="fn.style.visibility=''" ontouchend="fn.style.visibility='hidden'" style=z-index:10>☰</div>
-<div id=b43  ontouchstart="key_down(this, '09')" ontouchend="key_up(this, '09')" style=font-size:7vw><span style=position:relative;top:-1.3vw>⇥</span></div>
-<div id=b44  ontouchstart="key_down(this, '5b')" ontouchend="key_up(this, '5b')">❖</div>
-<div id=b45  ontouchstart="key_down(this, '20')" ontouchend="key_up(this, '20')" style="width:calc(18.1818% - 2px)"></div>
-
-<div id=b47  ontouchstart="key_down(this, 'de')" ontouchend="key_up(this, 'de')">'</div>
-<div id=b48  ontouchstart="key_down(this, '25')" ontouchend="key_up(this, '25')" style=font-size:6vw><span style=position:relative;top:-1vw>←</span></div>
-<div id=b49  ontouchstart="key_down(this, '28')" ontouchend="key_up(this, '28')" style=font-size:6vw><span style=position:relative;top:-0.5vw>↓</span></div>
-<div id=b410 ontouchstart="key_down(this, '27')" ontouchend="key_up(this, '27')" style=font-size:6vw><span style=position:relative;top:-1vw>→</span></div>
+<div id=b43  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='⇥' style=font-size:7vw><span style=position:relative;top:-1.3vw>⇥</span></div>
+<div id=b44  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='❖'>❖</div>
+<div id=b45  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k=' ' style="width:calc(18.1818% - 2px)"> </div>
+<div id=b47  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=b48  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='←' style=font-size:6vw><span style=position:relative;top:-1vw>←</span></div>
+<div id=b49  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='↓' style=font-size:6vw><span style=position:relative;top:-0.5vw>↓</span></div>
+<div id=b410 ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='→' style=font-size:6vw><span style=position:relative;top:-1vw>→</span></div>
 
 <span id=fn style=visibility:hidden;position:absolute;top:0;left:0;width:100%;height:100%>
-<div id=_00  ontouchstart="key_down(this, '70')" ontouchend="key_up(this, '70')">f1</div>
-<div id=_01  ontouchstart="key_down(this, '71')" ontouchend="key_up(this, '71')">f2</div>
-<div id=_02  ontouchstart="key_down(this, '72')" ontouchend="key_up(this, '72')">f3</div>
-<div id=_03  ontouchstart="key_down(this, '73')" ontouchend="key_up(this, '73')">f4</div>
-<div id=_04  ontouchstart="key_down(this, '74')" ontouchend="key_up(this, '74')">f5</div>
-<div id=_05  ontouchstart="key_down(this, '75')" ontouchend="key_up(this, '75')">f6</div>
-<div id=_06  ontouchstart="key_down(this, 'ad')" ontouchend="key_up(this, 'ad')" style="color:rgba(0, 0, 0, 0.4)">🔈</div>
-<div id=_07  ontouchstart="key_down(this, 'ae')" ontouchend="key_up(this, 'ae')" style="color:rgba(0, 0, 0, 0.4)">🔉</div>
-<div id=_08  ontouchstart="key_down(this, 'af')" ontouchend="key_up(this, 'af')" style="color:rgba(0, 0, 0, 0.4)">🔊</div>
-<div id=_09  ontouchstart="key_down(this, '2c')" ontouchend="key_up(this, '2c')">⎙</div>
-<div id=_010 ontouchstart="key_down(this, '2e')" ontouchend="key_up(this, '2e')">⌦</div>
+<div id=_00  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f1'>f1</div>
+<div id=_01  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f2'>f2</div>
+<div id=_02  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f3'>f3</div>
+<div id=_03  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f4'>f4</div>
+<div id=_04  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f5'>f5</div>
+<div id=_05  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f6'>f6</div>
+<div id=_06  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='🔈' style="color:rgba(0, 0, 0, 0.4)">🔈</div>
+<div id=_07  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='🔉' style="color:rgba(0, 0, 0, 0.4)">🔉</div>
+<div id=_08  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='🔊' style="color:rgba(0, 0, 0, 0.4)">🔊</div>
+<div id=_09  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='⎙'>⎙</div>
+<div id=_010 ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='⌦'>⌦</div>
 
-<div id=_10  ontouchstart="key_down(this, '76') "  ontouchend="key_up(this, '76') ">f7</div>
-<div id=_11  ontouchstart="key_down(this, '77') "  ontouchend="key_up(this, '77') ">f8</div>
-<div id=_12  ontouchstart="key_down(this, '78') "  ontouchend="key_up(this, '78') ">f9</div>
-<div id=_13  ontouchstart="key_down(this, '79') "  ontouchend="key_up(this, '79') ">f10</div>
-<div id=_14  ontouchstart="key_down(this, '7a') "  ontouchend="key_up(this, '7a') ">f11</div>
-<div id=_15  ontouchstart="key_down(this, '7b') "  ontouchend="key_up(this, '7b') ">f12</div>
-<div id=_16  ontouchstart="key_down(this, 'bbs')"  ontouchend="key_up(this, 'bbs')">+</div>
-<div id=_17  ontouchstart="key_down(this, 'bd') "  ontouchend="key_up(this, 'bd') ">-</div>
-<div id=_18  ontouchstart="key_down(this, '38s')" ontouchend="key_up(this, '38s') ">*</div>
-<div id=_19  ontouchstart="key_down(this, 'bf' )"  ontouchend="key_up(this, 'bf' )">/</div>
-<div id=_110 ontouchstart="key_down(this, 'bb') "  ontouchend="key_up(this, 'bb') ">=</div>
+<div id=_10  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f7'>f7</div>
+<div id=_11  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f8'>f8</div>
+<div id=_12  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f9'>f9</div>
+<div id=_13  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f10'>f10</div>
+<div id=_14  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f11'>f11</div>
+<div id=_15  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='f12'>f12</div>
+<div id=_16  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_17  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_18  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_19  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_110 ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
 
-<div id=_20  ontouchstart="key_down(this, '14')"  ontouchend="key_up(this, '14')">🄰</div>
-<div id=_21  ontouchstart="key_down(this, ''  )"  ontouchend="key_up(this, ''  )"></div>
-<div id=_22  ontouchstart="key_down(this, ''  )"  ontouchend="key_up(this, ''  )"></div>
-<div id=_23  ontouchstart="key_down(this, ''  )"  ontouchend="key_up(this, ''  )"></div>
-<div id=_24  ontouchstart="key_down(this, ''  )"  ontouchend="key_up(this, ''  )"></div>
-<div id=_25  ontouchstart="key_down(this, ''  )"  ontouchend="key_up(this, ''  )"></div>
-<div id=_26  ontouchstart="key_down(this, ''  )"  ontouchend="key_up(this, ''  )"></div>
-<div id=_27  ontouchstart="key_down(this, 'dbs')" ontouchend="key_up(this, 'dbs')">{</div>
-<div id=_28  ontouchstart="key_down(this, 'dds')" ontouchend="key_up(this, 'dds')">}</div>
-<div id=_29  ontouchstart="key_down(this, 'bfs')" ontouchend="key_up(this, 'bfs')">?</div>
-<div id=_210 ontouchstart="key_down(this, 'dc')"  ontouchend="key_up(this, 'dc')">\</div>
+<div id=_20  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='🄰'>🄰</div>
+<div id=_21  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_22  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_23  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_24  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_25  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_26  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_27  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_28  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_29  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_210 ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
 
 <div id=_30  style=visibility:hidden>☰</div>
-<div id=_31  ontouchstart="key_down(this, ''  )" ontouchend="key_up(this, '')"></div>
-<div id=_32  ontouchstart="key_down(this, ''  )" ontouchend="key_up(this, '')"></div>
-<div id=_33  ontouchstart="key_down(this, ''  )" ontouchend="key_up(this, '')"></div>
-<div id=_34  ontouchstart="key_down(this, ''  )" ontouchend="key_up(this, '')"></div>
-<div id=_35  ontouchstart="key_down(this, ''  )" ontouchend="key_up(this, '')"></div>
-<div id=_36  ontouchstart="key_down(this, ''  )" ontouchend="key_up(this, '')"></div>
-<div id=_37  ontouchstart="key_down(this, 'db')" ontouchend="key_up(this, 'db')">[</div>
-<div id=_38  ontouchstart="key_down(this, 'dd')" ontouchend="key_up(this, 'dd')">]</div>
-<div id=_39  ontouchstart="key_down(this, '21')" ontouchend="key_up(this, '21')">△</div>
-<div id=_310 ontouchstart="key_down(this, 'bds')" ontouchend="key_up(this, 'bds')">_</div>
+<div id=_31  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_32  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_33  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_34  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_35  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_36  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_37  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_38  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_39  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='△'>△</div>
+<div id=_310 ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
 
 <div style="width:calc(27.2727% - 2px)"></div>
-<div id=_43  ontouchstart="key_down(this, ''   )" ontouchend="key_up(this, ''   )"></div>
-<div id=_44  ontouchstart="key_down(this, ''   )" ontouchend="key_up(this, ''   )"></div>
-<div id=_45  ontouchstart="key_down(this, 'c0s')" ontouchend="key_up(this, 'c0s')">~</div>
-<div id=_46  ontouchstart="key_down(this, 'dcs')" ontouchend="key_up(this, 'dcs')">|</div>
-<div id=_47  ontouchstart="key_down(this, 'c0' )" ontouchend="key_up(this, 'c0' )">`</div>
-<div id=_48  ontouchstart="key_down(this, '24' )" ontouchend="key_up(this, '24' )">◁</div>
-<div id=_49  ontouchstart="key_down(this, '22' )" ontouchend="key_up(this, '22' )">▽</div>
-<div id=_410 ontouchstart="key_down(this, '23' )" ontouchend="key_up(this, '23' )">▷</div></span>
+<div id=_43  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_44  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_45  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_46  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_47  ontouchstart="key_down(this)" ontouchend="key_up(this)"></div>
+<div id=_48  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='◁'>◁</div>
+<div id=_49  ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='▽'>▽</div>
+<div id=_410 ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='▷'>▷</div></span>
 <script>
-caps_pressed = shift_down = false
+caps_active = shift_down = alt_down = swap_lang = false
+lang = true
 p=location.search.split('p=')[1]
+set_en()
 
-function key_down(t, key){event.preventDefault(); event.stopPropagation()
-    if(!fs) return
-    t.style.backgroundColor='#fff'; fetch(p+'p'+key)
-    if(key=='10'){ shift_down = true
-        b00.innerText='!'; b01.innerText='@'; b02.innerText='#'; b03.innerText='$'; b04.innerText='%'; b05.innerText='^'; b06.innerText='&'; b07.innerText='*'; b08.innerText='('; b09.innerText=')'
-        b10.innerText='Q'; b11.innerText='W'; b12.innerText='E'; b13.innerText='R'; b14.innerText='T'; b15.innerText='Y'; b16.innerText='U'; b17.innerText='I'; b18.innerText='O'; b19.innerText='P'
-        b20.innerText='A'; b21.innerText='S'; b22.innerText='D'; b23.innerText='F'; b24.innerText='G'; b25.innerText='H'; b26.innerText='J'; b27.innerText='K'; b28.innerText='L'; b29.innerText=':'
-                           b31.innerText='Z'; b32.innerText='X'; b33.innerText='C'; b34.innerText='V'; b35.innerText='B'; b36.innerText='N'; b37.innerText='M'; b38.innerText='<';                    b310.innerText='>'
-                                                                                                                                             b47.innerText='"';
-                                                                                                                                             _17.innerText='_';                    _19.innerText='?'; _110.innerText='+'
-                                                                                                                                                                                                      _210.innerText='|'
-                                                                                                                                             _37.innerText='{'; _38.innerText='}';
-                                                                                                                                             _47.innerText='~'}
-    if(key=='10' && caps_pressed){
-        b10.innerText='q'; b11.innerText='w'; b12.innerText='e'; b13.innerText='r'; b14.innerText='t'; b15.innerText='y'; b16.innerText='u'; b17.innerText='i'; b18.innerText='o'; b19.innerText='p'
-        b20.innerText='a'; b21.innerText='s'; b22.innerText='d'; b23.innerText='f'; b24.innerText='g'; b25.innerText='h'; b26.innerText='j'; b27.innerText='k'; b28.innerText='l'
-                           b31.innerText='z'; b32.innerText='x'; b33.innerText='c'; b34.innerText='v'; b35.innerText='b'; b36.innerText='n'; b37.innerText='m'}}
+function key_down(t){event.preventDefault(); event.stopPropagation()
+    k = t.dataset.k
+    if(k == '🄰'){ caps_active = !caps_active; caps_active ? t.style.backgroundColor='#fff' : t.style.backgroundColor='#000'
+        if(lang) shift_down ? set_en_shift() : set_en(); else shift_down ? set_ru_shift() : set_ru()}
+    else{
+        t.style.backgroundColor='#fff'
+        if(k == 'sh'){shift_down = true; if(alt_down  ) lang=!lang; if(lang) set_en_shift(); else set_ru_shift()}
+        if(k == 'al'){alt_down   = true; if(shift_down) lang=!lang; if(lang) shift_down ? set_en_shift() : set_en(); else shift_down ? set_ru_shift() : set_ru()}}
 
-function   key_up(t, key){event.preventDefault(); event.stopPropagation()
-    if(!fs) {document.body.requestFullscreen(); fs=true; screen.orientation.lock("landscape"); return}
-    t.style.backgroundColor='#000'; fetch(p+'u'+key);
-    if(key=='14') caps_pressed = !caps_pressed
-    if(key=='14' && !caps_pressed && shift_down == false){
-        b10.innerText='q'; b11.innerText='w'; b12.innerText='e'; b13.innerText='r'; b14.innerText='t'; b15.innerText='y'; b16.innerText='u'; b17.innerText='i'; b18.innerText='o'; b19.innerText='p'
-        b20.innerText='a'; b21.innerText='s'; b22.innerText='d'; b23.innerText='f'; b24.innerText='g'; b25.innerText='h'; b26.innerText='j'; b27.innerText='k'; b28.innerText='l'
-                           b31.innerText='z'; b32.innerText='x'; b33.innerText='c'; b34.innerText='v'; b35.innerText='b'; b36.innerText='n'; b37.innerText='m'}
-    if(key=='10'){ shift_down = false
-        b00.innerText='1'; b01.innerText='2'; b02.innerText='3'; b03.innerText='4'; b04.innerText='5'; b05.innerText='6'; b06.innerText='7'; b07.innerText='8'; b08.innerText='9'; b09.innerText='0'
-        b10.innerText='q'; b11.innerText='w'; b12.innerText='e'; b13.innerText='r'; b14.innerText='t'; b15.innerText='y'; b16.innerText='u'; b17.innerText='i'; b18.innerText='o'; b19.innerText='p'
-        b20.innerText='a'; b21.innerText='s'; b22.innerText='d'; b23.innerText='f'; b24.innerText='g'; b25.innerText='h'; b26.innerText='j'; b27.innerText='k'; b28.innerText='l'; b29.innerText=';'
-                           b31.innerText='z'; b32.innerText='x'; b33.innerText='c'; b34.innerText='v'; b35.innerText='b'; b36.innerText='n'; b37.innerText='m'; b38.innerText=',';                   b310.innerText='.'
-                                                                                                                                             b47.innerText='\''
-                                                                                                                                             _17.innerText='-';                    _19.innerText='/'; _110.innerText='='
-                                                                                                                                                                                                      _210.innerText='\\'
-                                                                                                                                             _37.innerText='['; _38.innerText=']';
-                                                                                                                                             _47.innerText='`'}
-    if((key=='10' && caps_pressed) || (key=='14' && caps_pressed && shift_down == false)){
-        b10.innerText='Q'; b11.innerText='W'; b12.innerText='E'; b13.innerText='R'; b14.innerText='T'; b15.innerText='Y'; b16.innerText='U'; b17.innerText='I'; b18.innerText='O'; b19.innerText='P'
-        b20.innerText='A'; b21.innerText='S'; b22.innerText='D'; b23.innerText='F'; b24.innerText='G'; b25.innerText='H'; b26.innerText='J'; b27.innerText='K'; b28.innerText='L'
-                           b31.innerText='Z'; b32.innerText='X'; b33.innerText='C'; b34.innerText='V'; b35.innerText='B'; b36.innerText='N'; b37.innerText='M'}}
+    if(!lang && k=='"') k='@'
+    if(!lang && k=='№') k='#'
+    if(!lang && k==';') k='$'
+    if(!lang && k==':') k='^'
+    if(!lang && k=='?') k='&'
+    if(!lang && k=='/') k='|'
+    if(!lang && k=='.') k='/'
+    if(!lang && k==',') k='?'
+    fetch(p+'p'+s.get(k))}
+
+function key_up(t){event.preventDefault(); event.stopPropagation()
+    k = t.dataset.k
+    if(k == '🄰'){ caps_active ? t.style.backgroundColor='#fff' : t.style.backgroundColor='#000'
+        if(lang) shift_down ? set_en_shift() : set_en(); else shift_down ? set_ru_shift() : set_ru()}
+    else{
+        t.style.backgroundColor='#000'
+        if(k == 'sh'){shift_down = false; lang ? set_en() : set_ru()}
+        if(k == 'al'){alt_down   = false}}
+    
+    if(!lang && k=='"') k='@'
+    if(!lang && k=='№') k='#'
+    if(!lang && k==';') k='$'
+    if(!lang && k==':') k='^'
+    if(!lang && k=='?') k='&'
+    if(!lang && k=='/') k='|'
+    if(!lang && k=='.') k='/'
+    if(!lang && k==',') k='?'
+    fetch(p+'u'+s.get(k))}
+
 fs=false
+
+function set_en(){
+    b00.innerText=b00.dataset.k='1'; b01.innerText=b01.dataset.k='2'; b02.innerText=b02.dataset.k='3'; b03.innerText=b03.dataset.k='4'; b04.innerText=b04.dataset.k='5'; b05.innerText=b05.dataset.k='6'; b06.innerText=b06.dataset.k='7'; b07.innerText=b07.dataset.k='8'; b08.innerText=b08.dataset.k='9'; b09.innerText=b09.dataset.k='0'
+    b10.innerText=b10.dataset.k='q'; b11.innerText=b11.dataset.k='w'; b12.innerText=b12.dataset.k='e'; b13.innerText=b13.dataset.k='r'; b14.innerText=b14.dataset.k='t'; b15.innerText=b15.dataset.k='y'; b16.innerText=b16.dataset.k='u'; b17.innerText=b17.dataset.k='i'; b18.innerText=b18.dataset.k='o'; b19.innerText=b19.dataset.k='p'
+    b20.innerText=b20.dataset.k='a'; b21.innerText=b21.dataset.k='s'; b22.innerText=b22.dataset.k='d'; b23.innerText=b23.dataset.k='f'; b24.innerText=b24.dataset.k='g'; b25.innerText=b25.dataset.k='h'; b26.innerText=b26.dataset.k='j'; b27.innerText=b27.dataset.k='k'; b28.innerText=b28.dataset.k='l'; b29.innerText=b29.dataset.k=';'
+                                     b31.innerText=b31.dataset.k='z'; b32.innerText=b32.dataset.k='x'; b33.innerText=b33.dataset.k='c'; b34.innerText=b34.dataset.k='v'; b35.innerText=b35.dataset.k='b'; b36.innerText=b36.dataset.k='n'; b37.innerText=b37.dataset.k='m'; b38.innerText=b38.dataset.k=',';                                b310.innerText=b310.dataset.k='.'
+                                                                                                                                                                                                                                           b47.innerText=b47.dataset.k='\''
+                                                                                                                                                                                                          _16.innerText=_16.dataset.k='+'; _17.innerText=_17.dataset.k='-'; _18.innerText=_18.dataset.k='*'; _19.innerText=_19.dataset.k='/';_110.innerText=_110.dataset.k='='
+                                                                                                                                                                                                                                           _27.innerText=_27.dataset.k='{'; _28.innerText=_28.dataset.k='}'; _29.innerText=_29.dataset.k='?';_210.innerText=_210.dataset.k='\\'
+                                                                                                                                                                                                                                           _37.innerText=_37.dataset.k='['; _38.innerText=_38.dataset.k=']';                                 _310.innerText=_310.dataset.k='_'
+                                                                                                                                                                         _45.innerText=_45.dataset.k='~'; _46.innerText=_46.dataset.k='|'; _47.innerText=_47.dataset.k='`'
+    if(caps_active){
+    b10.innerText=b10.dataset.k='Q'; b11.innerText=b11.dataset.k='W'; b12.innerText=b12.dataset.k='E'; b13.innerText=b13.dataset.k='R'; b14.innerText=b14.dataset.k='T'; b15.innerText=b15.dataset.k='Y'; b16.innerText=b16.dataset.k='U'; b17.innerText=b17.dataset.k='I'; b18.innerText=b18.dataset.k='O'; b19.innerText=b19.dataset.k='P'
+    b20.innerText=b20.dataset.k='A'; b21.innerText=b21.dataset.k='S'; b22.innerText=b22.dataset.k='D'; b23.innerText=b23.dataset.k='F'; b24.innerText=b24.dataset.k='G'; b25.innerText=b25.dataset.k='H'; b26.innerText=b26.dataset.k='J'; b27.innerText=b27.dataset.k='K'; b28.innerText=b28.dataset.k='L'
+                                     b31.innerText=b31.dataset.k='Z'; b32.innerText=b32.dataset.k='X'; b33.innerText=b33.dataset.k='C'; b34.innerText=b34.dataset.k='V'; b35.innerText=b35.dataset.k='B'; b36.innerText=b36.dataset.k='N'; b37.innerText=b37.dataset.k='M'}}
+function set_en_shift(){
+    b00.innerText=b00.dataset.k='!'; b01.innerText=b01.dataset.k='@'; b02.innerText=b02.dataset.k='#'; b03.innerText=b03.dataset.k='$'; b04.innerText=b04.dataset.k='%'; b05.innerText=b05.dataset.k='^'; b06.innerText=b06.dataset.k='&'; b07.innerText=b07.dataset.k='*'; b08.innerText=b08.dataset.k='('; b09.innerText=b09.dataset.k=')'
+    b10.innerText=b10.dataset.k='Q'; b11.innerText=b11.dataset.k='W'; b12.innerText=b12.dataset.k='E'; b13.innerText=b13.dataset.k='R'; b14.innerText=b14.dataset.k='T'; b15.innerText=b15.dataset.k='Y'; b16.innerText=b16.dataset.k='U'; b17.innerText=b17.dataset.k='I'; b18.innerText=b18.dataset.k='O'; b19.innerText=b19.dataset.k='P'
+    b20.innerText=b20.dataset.k='A'; b21.innerText=b21.dataset.k='S'; b22.innerText=b22.dataset.k='D'; b23.innerText=b23.dataset.k='F'; b24.innerText=b24.dataset.k='G'; b25.innerText=b25.dataset.k='H'; b26.innerText=b26.dataset.k='J'; b27.innerText=b27.dataset.k='K'; b28.innerText=b28.dataset.k='L'; b29.innerText=b29.dataset.k=':'
+                                     b31.innerText=b31.dataset.k='Z'; b32.innerText=b32.dataset.k='X'; b33.innerText=b33.dataset.k='C'; b34.innerText=b34.dataset.k='V'; b35.innerText=b35.dataset.k='B'; b36.innerText=b36.dataset.k='N'; b37.innerText=b37.dataset.k='M'; b38.innerText=b38.dataset.k='<';                                 b310.innerText=b310.dataset.k='>'
+                                                                                                                                                                                                                                           b47.innerText=b47.dataset.k='"'
+                                                                                                                                                                                                                                           _17.innerText=_17.dataset.k='_';                                  _19.innerText=_19.dataset.k='?';_110.innerText=_110.dataset.k='+'
+                                                                                                                                                                                                                                           _27.innerText=_27.dataset.k='{'; _28.innerText=_28.dataset.k='}'; _29.innerText=_29.dataset.k='?';_210.innerText=_210.dataset.k='|'
+                                                                                                                                                                                                                                           _37.innerText=_37.dataset.k='{'; _38.innerText=_38.dataset.k='}';                                 _310.innerText=_310.dataset.k='_'
+                                                                                                                                                                         _45.innerText=_45.dataset.k='~'; _46.innerText=_46.dataset.k='|'; _47.innerText=_47.dataset.k='~'
+    if(caps_active){
+    b10.innerText=b10.dataset.k='q'; b11.innerText=b11.dataset.k='w'; b12.innerText=b12.dataset.k='e'; b13.innerText=b13.dataset.k='r'; b14.innerText=b14.dataset.k='t'; b15.innerText=b15.dataset.k='y'; b16.innerText=b16.dataset.k='u'; b17.innerText=b17.dataset.k='i'; b18.innerText=b18.dataset.k='o'; b19.innerText=b19.dataset.k='p'
+    b20.innerText=b20.dataset.k='a'; b21.innerText=b21.dataset.k='s'; b22.innerText=b22.dataset.k='d'; b23.innerText=b23.dataset.k='f'; b24.innerText=b24.dataset.k='g'; b25.innerText=b25.dataset.k='h'; b26.innerText=b26.dataset.k='j'; b27.innerText=b27.dataset.k='k'; b28.innerText=b28.dataset.k='l'
+                                     b31.innerText=b31.dataset.k='z'; b32.innerText=b32.dataset.k='x'; b33.innerText=b33.dataset.k='c'; b34.innerText=b34.dataset.k='v'; b35.innerText=b35.dataset.k='b'; b36.innerText=b36.dataset.k='n'; b37.innerText=b37.dataset.k='m'}}
+function set_ru(){
+    b00.innerText=b00.dataset.k='1'; b01.innerText=b01.dataset.k='2'; b02.innerText=b02.dataset.k='3'; b03.innerText=b03.dataset.k='4'; b04.innerText=b04.dataset.k='5'; b05.innerText=b05.dataset.k='6'; b06.innerText=b06.dataset.k='7'; b07.innerText=b07.dataset.k='8'; b08.innerText=b08.dataset.k='9'; b09.innerText=b09.dataset.k='0'
+    b10.innerText=b10.dataset.k='й'; b11.innerText=b11.dataset.k='ц'; b12.innerText=b12.dataset.k='у'; b13.innerText=b13.dataset.k='к'; b14.innerText=b14.dataset.k='е'; b15.innerText=b15.dataset.k='н'; b16.innerText=b16.dataset.k='г'; b17.innerText=b17.dataset.k='ш'; b18.innerText=b18.dataset.k='щ'; b19.innerText=b19.dataset.k='з'
+    b20.innerText=b20.dataset.k='ф'; b21.innerText=b21.dataset.k='ы'; b22.innerText=b22.dataset.k='в'; b23.innerText=b23.dataset.k='а'; b24.innerText=b24.dataset.k='п'; b25.innerText=b25.dataset.k='р'; b26.innerText=b26.dataset.k='о'; b27.innerText=b27.dataset.k='л'; b28.innerText=b28.dataset.k='д'; b29.innerText=b29.dataset.k='ж'
+                                     b31.innerText=b31.dataset.k='я'; b32.innerText=b32.dataset.k='ч'; b33.innerText=b33.dataset.k='с'; b34.innerText=b34.dataset.k='м'; b35.innerText=b35.dataset.k='и'; b36.innerText=b36.dataset.k='т'; b37.innerText=b37.dataset.k='ь'; b38.innerText=b38.dataset.k='б';                                 b310.innerText=b310.dataset.k='ю'
+                                                                                                                                                                                                                                           b47.innerText=b47.dataset.k='э'
+                                                                                                                                                                                                                                           _17.innerText=_17.dataset.k='-';                                  _19.innerText=_19.dataset.k='/';_110.innerText=_110.dataset.k='='
+                                                                                                                                                                                                                                           _27.innerText=_27.dataset.k='ё'; _28.innerText=_28.dataset.k='х'; _29.innerText=_29.dataset.k='ъ';_210.innerText=_210.dataset.k='\\'
+                                                                                                                                                                                                                                           _37.innerText=_37.dataset.k='.'; _38.innerText=_38.dataset.k=','
+                                                                                                                                                                         _45.innerText=_45.dataset.k='' ; _46.innerText=_46.dataset.k=''  ; _47.innerText=_47.dataset.k=''
+    if(caps_active){
+    b10.innerText=b10.dataset.k='Й'; b11.innerText=b11.dataset.k='Ц'; b12.innerText=b12.dataset.k='У'; b13.innerText=b13.dataset.k='К'; b14.innerText=b14.dataset.k='Е'; b15.innerText=b15.dataset.k='Н'; b16.innerText=b16.dataset.k='Г'; b17.innerText=b17.dataset.k='Ш'; b18.innerText=b18.dataset.k='Щ'; b19.innerText=b19.dataset.k='З'
+    b20.innerText=b20.dataset.k='Ф'; b21.innerText=b21.dataset.k='Ы'; b22.innerText=b22.dataset.k='В'; b23.innerText=b23.dataset.k='А'; b24.innerText=b24.dataset.k='П'; b25.innerText=b25.dataset.k='Р'; b26.innerText=b26.dataset.k='О'; b27.innerText=b27.dataset.k='Л'; b28.innerText=b28.dataset.k='Д'; b29.innerText=b29.dataset.k='Ж'
+                                     b31.innerText=b31.dataset.k='Я'; b32.innerText=b32.dataset.k='Ч'; b33.innerText=b33.dataset.k='С'; b34.innerText=b34.dataset.k='М'; b35.innerText=b35.dataset.k='И'; b36.innerText=b36.dataset.k='Т'; b37.innerText=b37.dataset.k='Ь'; b38.innerText=b38.dataset.k='Б';                                 b310.innerText=b310.dataset.k='Ю'
+                                                                                                                                                                                                                                           b47.innerText=b47.dataset.k='Э'
+                                                                                                                                                                                                                                           _27.innerText=_27.dataset.k='Ё'; _28.innerText=_28.dataset.k='Х'; _29.innerText=_29.dataset.k='Ъ'}}
+function set_ru_shift(){
+    b00.innerText=b00.dataset.k='!'; b01.innerText=b01.dataset.k='"'; b02.innerText=b02.dataset.k='№'; b03.innerText=b03.dataset.k=';'; b04.innerText=b04.dataset.k='%'; b05.innerText=b05.dataset.k=':'; b06.innerText=b06.dataset.k='?'; b07.innerText=b07.dataset.k='*'; b08.innerText=b08.dataset.k='('; b09.innerText=b09.dataset.k=')'
+    b10.innerText=b10.dataset.k='Й'; b11.innerText=b11.dataset.k='Ц'; b12.innerText=b12.dataset.k='У'; b13.innerText=b13.dataset.k='К'; b14.innerText=b14.dataset.k='Е'; b15.innerText=b15.dataset.k='Н'; b16.innerText=b16.dataset.k='Г'; b17.innerText=b17.dataset.k='Ш'; b18.innerText=b18.dataset.k='Щ'; b19.innerText=b19.dataset.k='З'
+    b20.innerText=b20.dataset.k='Ф'; b21.innerText=b21.dataset.k='Ы'; b22.innerText=b22.dataset.k='В'; b23.innerText=b23.dataset.k='А'; b24.innerText=b24.dataset.k='П'; b25.innerText=b25.dataset.k='Р'; b26.innerText=b26.dataset.k='О'; b27.innerText=b27.dataset.k='Л'; b28.innerText=b28.dataset.k='Д'; b29.innerText=b29.dataset.k='Ж'
+                                     b31.innerText=b31.dataset.k='Я'; b32.innerText=b32.dataset.k='Ч'; b33.innerText=b33.dataset.k='С'; b34.innerText=b34.dataset.k='М'; b35.innerText=b35.dataset.k='И'; b36.innerText=b36.dataset.k='Т'; b37.innerText=b37.dataset.k='Ь'; b38.innerText=b38.dataset.k='Б';                                 b310.innerText=b310.dataset.k='Ю'
+                                                                                                                                                                                                                                           b47.innerText=b47.dataset.k='Э'
+                                                                                                                                                                                                                                           _17.innerText=_17.dataset.k='_';                                  _19.innerText=_19.dataset.k='/';_110.innerText=_110.dataset.k='+'
+                                                                                                                                                                                                                                           _27.innerText=_27.dataset.k='Ё'; _28.innerText=_28.dataset.k='Х'; _29.innerText=_29.dataset.k='Ъ';_210.innerText=_210.dataset.k='/'
+                                                                                                                                                                                                                                           _37.innerText=_37.dataset.k=','; _38.innerText=_38.dataset.k=',';                                 _310.innerText=_310.dataset.k='_'
+                                                                                                                                                                         _45.innerText=_45.dataset.k='' ; _46.innerText=_46.dataset.k='' ; _47.innerText=_47.dataset.k=''
+    if(caps_active){
+    b10.innerText=b10.dataset.k='й'; b11.innerText=b11.dataset.k='ц'; b12.innerText=b12.dataset.k='у'; b13.innerText=b13.dataset.k='к'; b14.innerText=b14.dataset.k='е'; b15.innerText=b15.dataset.k='н'; b16.innerText=b16.dataset.k='г'; b17.innerText=b17.dataset.k='ш'; b18.innerText=b18.dataset.k='щ'; b19.innerText=b19.dataset.k='з'
+    b20.innerText=b20.dataset.k='ф'; b21.innerText=b21.dataset.k='ы'; b22.innerText=b22.dataset.k='в'; b23.innerText=b23.dataset.k='а'; b24.innerText=b24.dataset.k='п'; b25.innerText=b25.dataset.k='р'; b26.innerText=b26.dataset.k='о'; b27.innerText=b27.dataset.k='л'; b28.innerText=b28.dataset.k='д'; b29.innerText=b29.dataset.k='ж'
+                                     b31.innerText=b31.dataset.k='я'; b32.innerText=b32.dataset.k='ч'; b33.innerText=b33.dataset.k='с'; b34.innerText=b34.dataset.k='м'; b35.innerText=b35.dataset.k='и'; b36.innerText=b36.dataset.k='т'; b37.innerText=b37.dataset.k='ь'; b38.innerText=b38.dataset.k='б';                                 b310.innerText=b310.dataset.k='ю'
+                                                                                                                                                                                                                                           b47.innerText=b47.dataset.k='э'
+                                                                                                                                                                                                                                           _27.innerText=_27.dataset.k='ё'; _28.innerText=_28.dataset.k='х'; _29.innerText=_29.dataset.k='ъ'}}
+s = new Map()
+
+s.set('1' ,'31'); s.set('2' ,'32'); s.set('3' ,'33'); s.set('4','34'); s.set('5' ,'35'); s.set('6','36'); s.set('7','37'); s.set('8' ,'38'); s.set('9','39'); s.set('0','30'); s.set('⌫','08')
+s.set('q' ,'51'); s.set('w' ,'57'); s.set('e' ,'45'); s.set('r','52'); s.set('t' ,'54'); s.set('y','59'); s.set('u','55'); s.set('i' ,'49'); s.set('o','4f'); s.set('p','50'); s.set('⎋' ,'1b')
+s.set('a' ,'41'); s.set('s' ,'53'); s.set('d' ,'44'); s.set('f','46'); s.set('g' ,'47'); s.set('h','48'); s.set('j','4a'); s.set('k' ,'4b'); s.set('l','4c'); s.set(';','ba'); s.set('⏎' ,'0d')
+s.set('sh','10'); s.set('z' ,'5a'); s.set('x' ,'58'); s.set('c','43'); s.set('v' ,'56'); s.set('b','42'); s.set('n','4e'); s.set('m' ,'4d'); s.set(',','bc'); s.set('↑','26'); s.set('.' ,'be')
+s.set('ct','11'); s.set('al','12');                   s.set('⇥','09'); s.set('❖','5b'); s.set(' ','20');                  s.set('\'','de'); s.set('←','25'); s.set('↓','28'); s.set('→' ,'27')
+
+s.set('й' ,'51'); s.set('ц' ,'57'); s.set('у' ,'45'); s.set('к','52'); s.set('е' ,'54'); s.set('н','59'); s.set('г','55'); s.set('ш' ,'49'); s.set('щ','4f'); s.set('з','50')
+s.set('ф' ,'41'); s.set('ы' ,'53'); s.set('в' ,'44'); s.set('а','46'); s.set('п' ,'47'); s.set('р','48'); s.set('о','4a'); s.set('л' ,'4b'); s.set('д','4c'); s.set('ж','ba')
+                  s.set('я' ,'5a'); s.set('ч' ,'58'); s.set('с','43'); s.set('м' ,'56'); s.set('и','42'); s.set('т','4e'); s.set('ь' ,'4d'); s.set('б','bc');                  s.set('ю' ,'be')
+                                                                                                                           s.set('э','de')
+
+s.set('!' ,'31'); s.set('@' ,'32'); s.set('#' ,'33'); s.set('$','34'); s.set('%' ,'35'); s.set('^','36'); s.set('&','37'); s.set('*' ,'38'); s.set('(','39'); s.set(')','30')
+s.set('Q' ,'51'); s.set('W' ,'57'); s.set('E' ,'45'); s.set('R','52'); s.set('T' ,'54'); s.set('Y','59'); s.set('U','55'); s.set('I' ,'49'); s.set('O','4f'); s.set('P','50')
+s.set('A' ,'41'); s.set('S' ,'53'); s.set('D' ,'44'); s.set('F','46'); s.set('G' ,'47'); s.set('H','48'); s.set('J','4a'); s.set('K' ,'4b'); s.set('L','4c'); s.set(':','ba')
+                  s.set('Z' ,'5a'); s.set('X' ,'58'); s.set('C','43'); s.set('V' ,'56'); s.set('B','42'); s.set('N','4e'); s.set('M' ,'4d'); s.set('<','bc');                   s.set('>' ,'be')
+                                                                                                                           s.set('"' ,'de')
+
+s.set('Й' ,'51'); s.set('Ц' ,'57'); s.set('У' ,'45'); s.set('К','52'); s.set('Е' ,'54'); s.set('Н','59'); s.set('Г','55'); s.set('Ш' ,'49'); s.set('Щ','4f'); s.set('З','50')
+s.set('Ф' ,'41'); s.set('Ы' ,'53'); s.set('В' ,'44'); s.set('А','46'); s.set('П' ,'47'); s.set('Р','48'); s.set('О','4a'); s.set('Л' ,'4b'); s.set('Д','4c'); s.set('Ж','ba')
+                  s.set('Я' ,'5a'); s.set('Ч' ,'58'); s.set('С','43'); s.set('М' ,'56'); s.set('И','42'); s.set('Т','4e'); s.set('Ь' ,'4d'); s.set('Б','bc');                  s.set('Ю' ,'be')
+                                                                                                                           s.set('Э','de')
+
+s.set('f1','70'); s.set('f2' ,'71'); s.set('f3' ,'72'); s.set('f4' ,'73'); s.set('f5' ,'74'); s.set('f6' ,'75' ); s.set('🔈','ad' ); s.set('🔉','ae' ); s.set('🔊','af' ); s.set('⎙','2c' ); s.set('⌦','2e' ) 
+s.set('f7','76'); s.set('f8' ,'77'); s.set('f9' ,'78'); s.set('f10','79'); s.set('f11','7a'); s.set('f12','7b' ); s.set('+' ,'bbs'); s.set('-' ,'bd' ); s.set('*' ,'38s'); s.set('/' ,'bf' ); s.set('=' ,'bb' )
+s.set('🄰' ,'14');                                                                                                                    s.set('{' ,'dbs'); s.set('}' ,'dds'); s.set('?' ,'bfs'); s.set('\\','dc' )
+                                                                                                                                     s.set('[' ,'db' ); s.set(']' ,'dd' ); s.set('△' ,'21'); s.set('_'  ,'bds')
+                                                                                              s.set('~'  ,'c0s'); s.set('|' ,'dcs'); s.set('`' ,'c0' ); s.set('◁' ,'24' ); s.set('▽','22' ); s.set('▷','23'  )
+s.set('ё','c0'); s.set('х' ,'db'); s.set('ъ' ,'dd')
+s.set('Ё','c0'); s.set('Х' ,'db'); s.set('Ъ' ,'dd')                                       
 </script>
