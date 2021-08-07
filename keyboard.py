@@ -83,7 +83,7 @@ def repeat_btn():
     if(cancel_thread==False):
         Press( int( '0x' + btn_code[1:3], 16 ) )
         thread = threading.Timer(.04, repeat_btn)
-        thread.start()
+        if(cancel_thread==False): thread.start()
 
 thread = threading.Thread( target = repeat_btn )
 
@@ -93,7 +93,9 @@ def send(): return app.send_static_file('index.htm')
 @app.errorhandler(404)
 def not_found(e):
     global cancel_thread, btn_code, thread, shift_pressed
-    if thread.is_alive(): thread.cancel()
+    cancel_thread=True
+    try : thread.cancel()
+    except : pass
     cancel_thread=True
     btn_code=request.url.partition(':5000/'+password)[2]
     if(btn_code[1:] == ''): return ('', 204)
@@ -103,6 +105,9 @@ def not_found(e):
         if(len(btn_code)==4 and shift_pressed==False): Press( int( '0x10', 16 ) )
         Press( int( '0x' + btn_code[1:3], 16 ) )
         if(btn_code[1:3] != '11' and btn_code[1:3] != '12' and btn_code[1:3] != '10'): #ctrl alt shift
+            cancel_thread=True
+            try : thread.cancel()
+            except : pass
             thread = threading.Timer(.3, repeat_btn)
             cancel_thread=False
             thread.start()
