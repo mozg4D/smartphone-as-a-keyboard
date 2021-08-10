@@ -1,28 +1,12 @@
-import subprocess
-try:
-    from flask import Flask, request
-    import ctypes
-    from ctypes import wintypes
-    import threading
-    import secrets
-    import os
-    import socket
-    import pyqrcode
-    import os.path
-except:
-    subprocess.run("pip install flask")
-    subprocess.run("pip install ctypes")
-    subprocess.run("pip install threading")
-    subprocess.run("pip install pyqrcode")
-    from flask import Flask, request
-    import ctypes
-    from ctypes import wintypes
-    import threading
-    import secrets
-    import os
-    import socket
-    import pyqrcode
-    import os.path
+from flask import Flask, request
+import ctypes
+from ctypes import wintypes
+import threading
+import secrets
+import os
+import socket
+import pyqrcode
+import os.path
 
 hllDll = ctypes.WinDLL("User32.dll")
 user32 = ctypes.WinDLL('user32', use_last_error=True)
@@ -79,24 +63,24 @@ else:
     url.svg('path.svg', scale=8)
 
 def repeat_btn():
-    global btn_code, thread, cancel_thread
-    if(cancel_thread==False):
-        Press( int( '0x' + btn_code[1:3], 16 ) )
-        thread = threading.Timer(.04, repeat_btn)
-        if(cancel_thread==False): thread.start()
+    global btn_code, cancel_thread, t
+    t.cancel()
+    if(not cancel_thread) :
+        Press(int( '0x' + btn_code[1:3], 16 ) )
+        t=threading.Timer(.04, repeat_btn)
+        t.start()
 
-thread = threading.Thread( target = repeat_btn )
+t=threading.Timer(1000, repeat_btn)
+t.cancel()
 
 @app.route('/'+ password +'.htm')
 def send(): return app.send_static_file('index.htm')
 
 @app.errorhandler(404)
 def not_found(e):
-    global cancel_thread, btn_code, thread, shift_pressed
+    global btn_code, shift_pressed, cancel_thread, t
     cancel_thread=True
-    try : thread.cancel()
-    except : pass
-    cancel_thread=True
+    t.cancel()
     btn_code=request.url.partition(':5000/'+password)[2]
     if(btn_code[1:] == ''): return ('', 204)
     if(btn_code[0:3]=='p10'): shift_pressed=True
@@ -105,12 +89,10 @@ def not_found(e):
         if(len(btn_code)==4 and shift_pressed==False): Press( int( '0x10', 16 ) )
         Press( int( '0x' + btn_code[1:3], 16 ) )
         if(btn_code[1:3] != '11' and btn_code[1:3] != '12' and btn_code[1:3] != '10'): #ctrl alt shift
-            cancel_thread=True
-            try : thread.cancel()
-            except : pass
-            thread = threading.Timer(.3, repeat_btn)
-            cancel_thread=False
-            thread.start()
+            t.cancel()
+            t=threading.Timer(.3, repeat_btn)       
+            cancel_thread = False
+            t.start()
     if(btn_code[0] == 'u'):
         if(len(btn_code)==4 and shift_pressed==False): Release( int( '0x10', 16 ) )
         Release( int( '0x' + btn_code[1:3], 16 ) )
@@ -118,4 +100,4 @@ def not_found(e):
 
 if __name__ == "__main__":
     from waitress import serve
-    serve(app, host="0.0.0.0", port=5000)
+    serve(app, host="0.0.0.0", port=5000, threads=1)
