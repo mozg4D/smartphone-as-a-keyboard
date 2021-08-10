@@ -123,11 +123,13 @@
 <div id=_410 ontouchstart="key_down(this)" ontouchend="key_up(this)" data-k='▷'>▷</div></span>
 <script>
 caps_active = shift_down = alt_down = swap_lang = false
-lang = true
+lang = terminate = true
 p=location.search.split('p=')[1]
 set_en()
 
-function key_down(t){event.preventDefault(); event.stopPropagation()
+function key_down(t){
+    terminate=true
+    event.preventDefault(); event.stopPropagation()
     k = t.dataset.k
     if(k == '🄰'){ caps_active = !caps_active; caps_active ? t.style.backgroundColor='#fff' : t.style.backgroundColor='#000'
         if(lang) shift_down ? set_en_shift() : set_en(); else shift_down ? set_ru_shift() : set_ru()}
@@ -144,9 +146,12 @@ function key_down(t){event.preventDefault(); event.stopPropagation()
     if(!lang && k=='/') k='|'
     if(!lang && k=='.') k='/'
     if(!lang && k==',') k='?'
+
     fetch(p+'p'+s.get(k))}
 
-function key_up(t){event.preventDefault(); event.stopPropagation()
+function key_up(t){
+    terminate=true
+    event.preventDefault(); event.stopPropagation()
     k = t.dataset.k
     if(k == '🄰'){ caps_active ? t.style.backgroundColor='#fff' : t.style.backgroundColor='#000'
         if(lang) shift_down ? set_en_shift() : set_en(); else shift_down ? set_ru_shift() : set_ru()}
@@ -163,9 +168,8 @@ function key_up(t){event.preventDefault(); event.stopPropagation()
     if(!lang && k=='/') k='|'
     if(!lang && k=='.') k='/'
     if(!lang && k==',') k='?'
-    fetch(p+'u'+s.get(k))}
 
-fs=false
+    fetch(p+'u'+s.get(k))}
 
 function set_en(){
     b00.innerText=b00.dataset.k='1'; b01.innerText=b01.dataset.k='2'; b02.innerText=b02.dataset.k='3'; b03.innerText=b03.dataset.k='4'; b04.innerText=b04.dataset.k='5'; b05.innerText=b05.dataset.k='6'; b06.innerText=b06.dataset.k='7'; b07.innerText=b07.dataset.k='8'; b08.innerText=b08.dataset.k='9'; b09.innerText=b09.dataset.k='0'
@@ -173,7 +177,7 @@ function set_en(){
     b20.innerText=b20.dataset.k='a'; b21.innerText=b21.dataset.k='s'; b22.innerText=b22.dataset.k='d'; b23.innerText=b23.dataset.k='f'; b24.innerText=b24.dataset.k='g'; b25.innerText=b25.dataset.k='h'; b26.innerText=b26.dataset.k='j'; b27.innerText=b27.dataset.k='k'; b28.innerText=b28.dataset.k='l'; b29.innerText=b29.dataset.k=';'
                                      b31.innerText=b31.dataset.k='z'; b32.innerText=b32.dataset.k='x'; b33.innerText=b33.dataset.k='c'; b34.innerText=b34.dataset.k='v'; b35.innerText=b35.dataset.k='b'; b36.innerText=b36.dataset.k='n'; b37.innerText=b37.dataset.k='m'; b38.innerText=b38.dataset.k=',';                                b310.innerText=b310.dataset.k='.'
                                                                                                                                                                                                                                            b47.innerText=b47.dataset.k='\''
-                                                                                                                                                                                                          _16.innerText=_16.dataset.k='+'; _17.innerText=_17.dataset.k='-'; _18.innerText=_18.dataset.k='*'; _19.innerText=_19.dataset.k='/';_110.innerText=_110.dataset.k='='
+                                                                                                                                                                                                                                           _17.innerText=_17.dataset.k='+'; _18.innerText=_18.dataset.k='-'; _19.innerText=_19.dataset.k='/';_110.innerText=_110.dataset.k='='
                                                                                                                                                                                                                                            _27.innerText=_27.dataset.k='{'; _28.innerText=_28.dataset.k='}'; _29.innerText=_29.dataset.k='?';_210.innerText=_210.dataset.k='\\'
                                                                                                                                                                                                                                            _37.innerText=_37.dataset.k='['; _38.innerText=_38.dataset.k=']';                                 _310.innerText=_310.dataset.k='_'
                                                                                                                                                                          _45.innerText=_45.dataset.k='~'; _46.innerText=_46.dataset.k='|'; _47.innerText=_47.dataset.k='`'
@@ -187,7 +191,7 @@ function set_en_shift(){
     b20.innerText=b20.dataset.k='A'; b21.innerText=b21.dataset.k='S'; b22.innerText=b22.dataset.k='D'; b23.innerText=b23.dataset.k='F'; b24.innerText=b24.dataset.k='G'; b25.innerText=b25.dataset.k='H'; b26.innerText=b26.dataset.k='J'; b27.innerText=b27.dataset.k='K'; b28.innerText=b28.dataset.k='L'; b29.innerText=b29.dataset.k=':'
                                      b31.innerText=b31.dataset.k='Z'; b32.innerText=b32.dataset.k='X'; b33.innerText=b33.dataset.k='C'; b34.innerText=b34.dataset.k='V'; b35.innerText=b35.dataset.k='B'; b36.innerText=b36.dataset.k='N'; b37.innerText=b37.dataset.k='M'; b38.innerText=b38.dataset.k='<';                                 b310.innerText=b310.dataset.k='>'
                                                                                                                                                                                                                                            b47.innerText=b47.dataset.k='"'
-                                                                                                                                                                                                                                           _17.innerText=_17.dataset.k='_';                                  _19.innerText=_19.dataset.k='?';_110.innerText=_110.dataset.k='+'
+                                                                                                                                                                                                                                                                            _18.innerText=_18.dataset.k='_'; _19.innerText=_19.dataset.k='?';_110.innerText=_110.dataset.k='+'
                                                                                                                                                                                                                                            _27.innerText=_27.dataset.k='{'; _28.innerText=_28.dataset.k='}'; _29.innerText=_29.dataset.k='?';_210.innerText=_210.dataset.k='|'
                                                                                                                                                                                                                                            _37.innerText=_37.dataset.k='{'; _38.innerText=_38.dataset.k='}';                                 _310.innerText=_310.dataset.k='_'
                                                                                                                                                                          _45.innerText=_45.dataset.k='~'; _46.innerText=_46.dataset.k='|'; _47.innerText=_47.dataset.k='~'
@@ -201,7 +205,7 @@ function set_ru(){
     b20.innerText=b20.dataset.k='ф'; b21.innerText=b21.dataset.k='ы'; b22.innerText=b22.dataset.k='в'; b23.innerText=b23.dataset.k='а'; b24.innerText=b24.dataset.k='п'; b25.innerText=b25.dataset.k='р'; b26.innerText=b26.dataset.k='о'; b27.innerText=b27.dataset.k='л'; b28.innerText=b28.dataset.k='д'; b29.innerText=b29.dataset.k='ж'
                                      b31.innerText=b31.dataset.k='я'; b32.innerText=b32.dataset.k='ч'; b33.innerText=b33.dataset.k='с'; b34.innerText=b34.dataset.k='м'; b35.innerText=b35.dataset.k='и'; b36.innerText=b36.dataset.k='т'; b37.innerText=b37.dataset.k='ь'; b38.innerText=b38.dataset.k='б';                                 b310.innerText=b310.dataset.k='ю'
                                                                                                                                                                                                                                            b47.innerText=b47.dataset.k='э'
-                                                                                                                                                                                                                                           _17.innerText=_17.dataset.k='-';                                  _19.innerText=_19.dataset.k='/';_110.innerText=_110.dataset.k='='
+                                                                                                                                                                                                                                                                            _18.innerText=_18.dataset.k='-'; _19.innerText=_19.dataset.k='/';_110.innerText=_110.dataset.k='='
                                                                                                                                                                                                                                            _27.innerText=_27.dataset.k='ё'; _28.innerText=_28.dataset.k='х'; _29.innerText=_29.dataset.k='ъ';_210.innerText=_210.dataset.k='\\'
                                                                                                                                                                                                                                            _37.innerText=_37.dataset.k='.'; _38.innerText=_38.dataset.k=','
                                                                                                                                                                          _45.innerText=_45.dataset.k='' ; _46.innerText=_46.dataset.k=''  ; _47.innerText=_47.dataset.k=''
@@ -217,7 +221,7 @@ function set_ru_shift(){
     b20.innerText=b20.dataset.k='Ф'; b21.innerText=b21.dataset.k='Ы'; b22.innerText=b22.dataset.k='В'; b23.innerText=b23.dataset.k='А'; b24.innerText=b24.dataset.k='П'; b25.innerText=b25.dataset.k='Р'; b26.innerText=b26.dataset.k='О'; b27.innerText=b27.dataset.k='Л'; b28.innerText=b28.dataset.k='Д'; b29.innerText=b29.dataset.k='Ж'
                                      b31.innerText=b31.dataset.k='Я'; b32.innerText=b32.dataset.k='Ч'; b33.innerText=b33.dataset.k='С'; b34.innerText=b34.dataset.k='М'; b35.innerText=b35.dataset.k='И'; b36.innerText=b36.dataset.k='Т'; b37.innerText=b37.dataset.k='Ь'; b38.innerText=b38.dataset.k='Б';                                 b310.innerText=b310.dataset.k='Ю'
                                                                                                                                                                                                                                            b47.innerText=b47.dataset.k='Э'
-                                                                                                                                                                                                                                           _17.innerText=_17.dataset.k='_';                                  _19.innerText=_19.dataset.k='/';_110.innerText=_110.dataset.k='+'
+                                                                                                                                                                                                                                                                            _18.innerText=_18.dataset.k='_'; _19.innerText=_19.dataset.k='/';_110.innerText=_110.dataset.k='+'
                                                                                                                                                                                                                                            _27.innerText=_27.dataset.k='Ё'; _28.innerText=_28.dataset.k='Х'; _29.innerText=_29.dataset.k='Ъ';_210.innerText=_210.dataset.k='/'
                                                                                                                                                                                                                                            _37.innerText=_37.dataset.k=','; _38.innerText=_38.dataset.k=',';                                 _310.innerText=_310.dataset.k='_'
                                                                                                                                                                          _45.innerText=_45.dataset.k='' ; _46.innerText=_46.dataset.k='' ; _47.innerText=_47.dataset.k=''
