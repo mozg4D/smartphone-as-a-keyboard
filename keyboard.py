@@ -72,7 +72,7 @@ def not_found(e):
     if(btn_code[0:3]=='p12'): al=True
     if(btn_code[0:3]=='u12'): al=False
     if(btn_code[0] == 'p'):
-        if(ct and al and btn_code[1:3] == '08'): os.system('%windir%\system32\\taskmgr.exe /7')
+        if(ct and al and btn_code[1:3] == '08'): os.popen('%windir%\system32\\taskmgr.exe /7')
         if(len(btn_code)==4 and sh==False): Press( int( '0x10', 16 ) )
         Press( int( '0x' + btn_code[1:3], 16 ) )
         if(btn_code[1:3] != '11' and btn_code[1:3] != '12' and btn_code[1:3] != '10'): #ctrl alt shift
