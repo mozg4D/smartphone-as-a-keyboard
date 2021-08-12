@@ -1,21 +1,18 @@
 from flask import Flask, request
 import ctypes
-from ctypes import wintypes
 import threading
 import secrets
 import os
 import socket
 import pyqrcode
-import os.path
 
-hllDll = ctypes.WinDLL("User32.dll")
 user32 = ctypes.WinDLL('user32')
-class KEYBDINPUT(ctypes.Structure): _fields_ = (("wVk", wintypes.WORD),("dwFlags", wintypes.DWORD),("dwExtraInfo", wintypes.WPARAM))
-class INPUT(ctypes.Structure): _fields_ = (("type", wintypes.DWORD),("ki", KEYBDINPUT),("padding", ctypes.c_ubyte * 8))
-def Press(key):   user32.SendInput(1, ctypes.byref(INPUT(type=1, ki=KEYBDINPUT(wVk=key))), 40)
-def Release(key): user32.SendInput(1, ctypes.byref(INPUT(type=1, ki=KEYBDINPUT(wVk=key, dwFlags=2))), 40)
+class KBDIN(ctypes.Structure): _fields_ = (("wVk", ctypes.c_ushort),("dwFlags", ctypes.c_ulong),("dwExtraInfo", ctypes.c_ulonglong))
+class INPUT(ctypes.Structure): _fields_ = (("type", ctypes.c_ulong),("ki", KBDIN),("padding", ctypes.c_ubyte * 8))
+def Press(key_code):   user32.SendInput(1, ctypes.byref(INPUT(type=1, ki=KBDIN(wVk=key_code))), 40)
+def Release(key_code): user32.SendInput(1, ctypes.byref(INPUT(type=1, ki=KBDIN(wVk=key_code, dwFlags=2))), 40)
 
-if(hllDll.GetKeyState(0x90)):
+if(user32.GetKeyState(0x90)):
     Press(0x90)
     Release(0x90)
 
@@ -74,7 +71,6 @@ def not_found(e):
         if(len(btn_code)==4 and shift_pressed==False): Press( int( '0x10', 16 ) )
         Press( int( '0x' + btn_code[1:3], 16 ) )
         if(btn_code[1:3] != '11' and btn_code[1:3] != '12' and btn_code[1:3] != '10'): #ctrl alt shift
-            t.cancel()
             t=threading.Timer(.3, repeat_btn)       
             cancel_thread = False
             t.start()
