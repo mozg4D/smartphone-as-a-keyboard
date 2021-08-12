@@ -17,7 +17,7 @@ if(user32.GetKeyState(0x90)):
     Release(0x90)
 
 app = Flask(__name__, static_url_path='')
-cancel_thread = shift_pressed = False
+cancel_thread = sh = ct = al = False
 btn_code = ''
 ip = socket.gethostbyname(socket.gethostname())
 password = secrets.token_urlsafe(5)
@@ -60,22 +60,27 @@ def send(): return app.send_static_file('index.htm')
 
 @app.errorhandler(404)
 def not_found(e):
-    global btn_code, shift_pressed, cancel_thread, t
+    global btn_code, sh, ct, al, cancel_thread, t
     cancel_thread=True
     t.cancel()
     btn_code=request.url.partition(':5000/'+password)[2]
     if(btn_code[1:] == ''): return ('', 204)
-    if(btn_code[0:3]=='p10'): shift_pressed=True
-    if(btn_code[0:3]=='u10'): shift_pressed=False
+    if(btn_code[0:3]=='p10'): sh=True
+    if(btn_code[0:3]=='u10'): sh=False
+    if(btn_code[0:3]=='p11'): ct=True
+    if(btn_code[0:3]=='u11'): ct=False
+    if(btn_code[0:3]=='p12'): al=True
+    if(btn_code[0:3]=='u12'): al=False
     if(btn_code[0] == 'p'):
-        if(len(btn_code)==4 and shift_pressed==False): Press( int( '0x10', 16 ) )
+        if(ct and al and btn_code[1:3] == '08'): os.system('%windir%\system32\\taskmgr.exe /7')
+        if(len(btn_code)==4 and sh==False): Press( int( '0x10', 16 ) )
         Press( int( '0x' + btn_code[1:3], 16 ) )
         if(btn_code[1:3] != '11' and btn_code[1:3] != '12' and btn_code[1:3] != '10'): #ctrl alt shift
             t=threading.Timer(.3, repeat_btn)       
             cancel_thread = False
             t.start()
     if(btn_code[0] == 'u'):
-        if(len(btn_code)==4 and shift_pressed==False): Release( int( '0x10', 16 ) )
+        if(len(btn_code)==4 and sh==False): Release( int( '0x10', 16 ) )
         Release( int( '0x' + btn_code[1:3], 16 ) )
     return ('', 204)
 
