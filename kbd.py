@@ -66,7 +66,7 @@ async def handler(websocket):
                 Release( int( '0x' + btn_code[1:3], 16 ) )
 
 async def main():
-    async with websockets.serve(handler, ip, 8765):
+    async with websockets.serve(handler, ip, 8765, ping_interval=None):
         await asyncio.Future()
 
 os.startfile("server.exe")
