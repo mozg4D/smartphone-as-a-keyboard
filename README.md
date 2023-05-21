@@ -21,11 +21,3 @@ to make standalone exe:
 pyinstaller --ico=ico.ico --noconsole keyboard.py
 
 ![alt text](https://github.com/mozg4D/smartphome-as-keyboard/blob/main/1.jpg?raw=true)
-
-![alt text](https://github.com/mozg4D/smartphome-as-keyboard/blob/main/2.jpg?raw=true)
-
-![alt text](https://github.com/mozg4D/smartphome-as-keyboard/blob/main/3.jpg?raw=true)
-
-![alt text](https://github.com/mozg4D/smartphome-as-keyboard/blob/main/4.jpg?raw=true)
-
-![alt text](https://github.com/mozg4D/smartphome-as-keyboard/blob/main/5.jpg?raw=true)
