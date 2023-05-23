@@ -49,7 +49,7 @@ function key_down(t){t.style.backgroundColor='#fff'
     if(t.innerText=='al') a_down=true
     if(lang  && t.innerText=='sh') fill(es)
     if(!lang && t.innerText=='sh') fill(rs)
-    if(val(t)!=''){ timeout = setTimeout( ()=>{clearTimeout(timeout); clearInterval(iterator); iterator = window.setInterval( ()=>{ key_repeat(t) },  50)  }, 300); ws.send( p+'p'+val(t) )}}
+    if(val(t)!=''){ timeout = setTimeout( ()=>{clearTimeout(timeout); clearInterval(iterator); iterator = window.setInterval( ()=>{ ws.send( p+'p'+val(t) ) },  50)  }, 300); ws.send( p+'p'+val(t) )}}
 
 function key_up(t){t.style.backgroundColor='#000'
     clearTimeout(timeout); clearInterval(iterator); event.preventDefault(); event.stopPropagation()
@@ -59,6 +59,4 @@ function key_up(t){t.style.backgroundColor='#000'
     if(lang &&  t.innerText=='sh') fill(e)
     if(!lang && t.innerText=='sh') fill(r)
     if(val(t)!='') ws.send( p+'u'+val(t) )}
-
-function key_repeat(t){ if(val(t)!='') ws.send( p+'p'+val(t) )}
 </script>
