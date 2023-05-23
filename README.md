@@ -1,4 +1,4 @@
-# smartphome-as-keyboard
+# smartphone-as-a-keyboard
 Use your smartphone as a computer keyboard
 
 kbd.zip - compiled standalone exe
