@@ -1,0 +1,155 @@
+diff -ruN kbdv3/android/app/build.gradle.kts kbdv4/android/app/build.gradle.kts
+--- kbdv3/android/app/build.gradle.kts	2026-09-27 13:02:58.922120043 +0000
++++ kbdv4/android/app/build.gradle.kts	2026-09-27 13:01:18.529741919 +0000
+@@ -10,8 +10,8 @@
+         applicationId = "com.mozg4d.smartphonekeyboard"
+         minSdk = 28
+         targetSdk = 36
+-        versionCode = 3
+-        versionName = "0.3.0"
++        versionCode = 4
++        versionName = "0.4.0"
+     }
+ 
+     buildTypes {
+diff -ruN kbdv3/android/app/src/main/AndroidManifest.xml kbdv4/android/app/src/main/AndroidManifest.xml
+--- kbdv3/android/app/src/main/AndroidManifest.xml	2026-09-27 13:02:58.922321180 +0000
++++ kbdv4/android/app/src/main/AndroidManifest.xml	2026-09-27 13:01:18.529987401 +0000
+@@ -10,10 +10,13 @@
+     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
++    <uses-permission android:name="android.permission.VIBRATE" />
+ 
+     <application
+         android:allowBackup="false"
+         android:appCategory="game"
++        android:icon="@mipmap/ic_launcher"
++        android:roundIcon="@mipmap/ic_launcher_round"
+         android:isGame="true"
+         android:hardwareAccelerated="true"
+         android:label="Smartphone Keyboard"
+diff -ruN kbdv3/android/app/src/main/assets/index.html kbdv4/android/app/src/main/assets/index.html
+--- kbdv3/android/app/src/main/assets/index.html	2026-09-27 11:12:57.000000000 +0000
++++ kbdv4/android/app/src/main/assets/index.html	2026-09-27 13:01:18.531169459 +0000
+@@ -122,6 +122,7 @@
+   const token=now.token || before.token;
+   activePointers.set(ev.pointerId,{btn,token,isShift,isAlt});
+   btn.classList.add('down');
++  nativeCall('haptic');
+   try{ btn.setPointerCapture(ev.pointerId); }catch(_){ }
+   if(token) nativeCall('keyDown',token);
+ }
+@@ -192,6 +193,7 @@
+     const address=document.createElement('small');
+     address.textContent=device.address || '';
+     button.append(name,address);
++    button.addEventListener('pointerdown',()=>nativeCall('haptic'),{passive:true});
+     button.addEventListener('click',()=>nativeCall('connect',device.address));
+     devicesEl.appendChild(button);
+   }
+@@ -200,6 +202,9 @@
+   try{updateSetup(JSON.parse(raw));}catch(_){updateSetup({connected:false,message:String(raw)})}
+ };
+ 
++for(const id of ['pair','refresh','settings']){
++  document.getElementById(id).addEventListener('pointerdown',()=>nativeCall('haptic'),{passive:true});
++}
+ document.getElementById('pair').addEventListener('click',()=>nativeCall('makeDiscoverable'));
+ document.getElementById('refresh').addEventListener('click',()=>updateSetup(getState()));
+ document.getElementById('settings').addEventListener('click',()=>nativeCall('openBluetoothSettings'));
+diff -ruN kbdv3/android/app/src/main/java/com/mozg4d/smartphonekeyboard/MainActivity.java kbdv4/android/app/src/main/java/com/mozg4d/smartphonekeyboard/MainActivity.java
+--- kbdv3/android/app/src/main/java/com/mozg4d/smartphonekeyboard/MainActivity.java	2026-09-27 11:50:38.000000000 +0000
++++ kbdv4/android/app/src/main/java/com/mozg4d/smartphonekeyboard/MainActivity.java	2026-09-27 13:01:18.530961616 +0000
+@@ -15,6 +15,8 @@
+ import android.graphics.Rect;
+ import android.os.Build;
+ import android.os.Bundle;
++import android.os.VibrationEffect;
++import android.os.Vibrator;
+ import android.provider.Settings;
+ import android.view.View;
+ import android.view.Window;
+@@ -484,6 +486,21 @@
+         runOnUiThread(() -> startActivity(new Intent(Settings.ACTION_BLUETOOTH_SETTINGS)));
+     }
+ 
++    private void hapticTick() {
++        runOnUiThread(() -> {
++            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
++            if (vibrator == null || !vibrator.hasVibrator()) return;
++            try {
++                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
++                    vibrator.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK));
++                } else {
++                    vibrator.vibrate(VibrationEffect.createOneShot(8, 45));
++                }
++            } catch (RuntimeException ignored) {
++            }
++        });
++    }
++
+     private String bondedDevicesJson() {
+         JSONArray array = new JSONArray();
+         if (!hasBluetoothConnectPermission() || bluetoothAdapter == null) return array.toString();
+@@ -712,6 +729,11 @@
+         }
+ 
+         @JavascriptInterface
++        public void haptic() {
++            MainActivity.this.hapticTick();
++        }
++
++        @JavascriptInterface
+         public void keyUp(String token) {
+             MainActivity.this.keyUp(token);
+         }
+diff -ruN kbdv3/android/app/src/main/res/drawable/ic_launcher_foreground.xml kbdv4/android/app/src/main/res/drawable/ic_launcher_foreground.xml
+--- kbdv3/android/app/src/main/res/drawable/ic_launcher_foreground.xml	1970-01-01 00:00:00.000000000 +0000
++++ kbdv4/android/app/src/main/res/drawable/ic_launcher_foreground.xml	2026-09-27 13:01:18.531516416 +0000
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="utf-8"?>
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="108dp"
++    android:height="108dp"
++    android:viewportWidth="108"
++    android:viewportHeight="108">
++
++    <path
++        android:fillColor="@android:color/transparent"
++        android:pathData="M24,31 H84 Q90,31 90,37 V71 Q90,77 84,77 H24 Q18,77 18,71 V37 Q18,31 24,31 Z"
++        android:strokeColor="#F5F7F8"
++        android:strokeLineCap="round"
++        android:strokeLineJoin="round"
++        android:strokeWidth="4" />
++
++    <path android:fillColor="#F5F7F8" android:pathData="M25,39 H33 V46 H25 Z M37,39 H45 V46 H37 Z M49,39 H57 V46 H49 Z M61,39 H69 V46 H61 Z M73,39 H81 V46 H73 Z" />
++    <path android:fillColor="#F5F7F8" android:pathData="M25,51 H33 V58 H25 Z M37,51 H45 V58 H37 Z M49,51 H57 V58 H49 Z M61,51 H69 V58 H61 Z M73,51 H81 V58 H73 Z" />
++    <path android:fillColor="#F5F7F8" android:pathData="M25,63 H33 V69 H25 Z M37,63 H45 V69 H37 Z M49,63 H69 V69 H49 Z M73,63 H81 V69 H73 Z" />
++</vector>
+diff -ruN kbdv3/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml kbdv4/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+--- kbdv3/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml	1970-01-01 00:00:00.000000000 +0000
++++ kbdv4/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml	2026-09-27 13:01:18.531587264 +0000
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
++    <background android:drawable="@color/ic_launcher_background" />
++    <foreground android:drawable="@drawable/ic_launcher_foreground" />
++</adaptive-icon>
+diff -ruN kbdv3/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml kbdv4/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+--- kbdv3/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml	1970-01-01 00:00:00.000000000 +0000
++++ kbdv4/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml	2026-09-27 13:01:18.531637452 +0000
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="utf-8"?>
++<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
++    <background android:drawable="@color/ic_launcher_background" />
++    <foreground android:drawable="@drawable/ic_launcher_foreground" />
++</adaptive-icon>
+diff -ruN kbdv3/android/app/src/main/res/values/colors.xml kbdv4/android/app/src/main/res/values/colors.xml
+--- kbdv3/android/app/src/main/res/values/colors.xml	1970-01-01 00:00:00.000000000 +0000
++++ kbdv4/android/app/src/main/res/values/colors.xml	2026-09-27 13:01:18.531467625 +0000
+@@ -0,0 +1,4 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <color name="ic_launcher_background">#111315</color>
++</resources>
