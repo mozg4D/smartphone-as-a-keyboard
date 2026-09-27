@@ -4,6 +4,7 @@ on:
     branches: [android-immersive]
     paths:
       - "android-project.zip"
+      - "android-v2.patch"
       - ".github/workflows/build-immersive-apk.yml"
   workflow_dispatch:
 jobs:
@@ -24,6 +25,8 @@ jobs:
           rm -rf extracted
           mkdir extracted
           unzip -q android-project.zip -d extracted
+      - name: Apply HID foreground-service fix
+        run: patch -p1 -d extracted < android-v2.patch
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "9.6.0"
@@ -32,5 +35,5 @@ jobs:
         run: gradle :app:assembleDebug --stacktrace
       - uses: actions/upload-artifact@v4
         with:
-          name: smartphone-keyboard-debug-apk
+          name: smartphone-keyboard-debug-apk-v2
           path: extracted/android/app/build/outputs/apk/debug/app-debug.apk
