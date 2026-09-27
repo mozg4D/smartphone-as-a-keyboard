@@ -5,6 +5,7 @@ on:
     paths:
       - "android-project.zip"
       - "android-v2.patch"
+      - "android-v4.patch"
       - ".github/workflows/build-immersive-apk.yml"
   workflow_dispatch:
 jobs:
@@ -27,6 +28,8 @@ jobs:
           unzip -q android-project.zip -d extracted
       - name: Apply HID foreground-service fix
         run: patch -p1 -d extracted < android-v2.patch
+      - name: Apply haptics and launcher icon
+        run: patch -p1 -d extracted < android-v4.patch
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "9.6.0"
@@ -35,5 +38,5 @@ jobs:
         run: gradle :app:assembleDebug --stacktrace
       - uses: actions/upload-artifact@v4
         with:
-          name: smartphone-keyboard-debug-apk-v2
+          name: smartphone-keyboard-debug-apk-v4
           path: extracted/android/app/build/outputs/apk/debug/app-debug.apk
