@@ -1,0 +1,229 @@
+diff -ruN orig-v1/android/app/build.gradle.kts smartphone-keyboard-android/android/app/build.gradle.kts
+--- orig-v1/android/app/build.gradle.kts	2026-09-27 11:11:01.000000000 +0000
++++ smartphone-keyboard-android/android/app/build.gradle.kts	2026-09-27 11:50:37.510734915 +0000
+@@ -10,8 +10,8 @@
+         applicationId = "com.mozg4d.smartphonekeyboard"
+         minSdk = 28
+         targetSdk = 36
+-        versionCode = 1
+-        versionName = "0.1.0"
++        versionCode = 2
++        versionName = "0.2.0"
+     }
+ 
+     buildTypes {
+diff -ruN orig-v1/android/app/src/main/AndroidManifest.xml smartphone-keyboard-android/android/app/src/main/AndroidManifest.xml
+--- orig-v1/android/app/src/main/AndroidManifest.xml	2026-09-27 11:11:01.000000000 +0000
++++ smartphone-keyboard-android/android/app/src/main/AndroidManifest.xml	2026-09-27 11:50:37.510373032 +0000
+@@ -8,6 +8,8 @@
+     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
++    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
++    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+ 
+     <application
+         android:allowBackup="false"
+@@ -17,6 +19,12 @@
+         android:theme="@style/Theme.SmartphoneKeyboard"
+         android:usesCleartextTraffic="false">
+ 
++        <service
++            android:name=".HidKeepAliveService"
++            android:exported="false"
++            android:foregroundServiceType="connectedDevice"
++            android:stopWithTask="true" />
++
+         <activity
+             android:name=".MainActivity"
+             android:configChanges="orientation|screenSize|keyboardHidden|uiMode"
+diff -ruN orig-v1/android/app/src/main/java/com/mozg4d/smartphonekeyboard/HidKeepAliveService.java smartphone-keyboard-android/android/app/src/main/java/com/mozg4d/smartphonekeyboard/HidKeepAliveService.java
+--- orig-v1/android/app/src/main/java/com/mozg4d/smartphonekeyboard/HidKeepAliveService.java	1970-01-01 00:00:00.000000000 +0000
++++ smartphone-keyboard-android/android/app/src/main/java/com/mozg4d/smartphonekeyboard/HidKeepAliveService.java	2026-09-27 11:50:37.049550754 +0000
+@@ -0,0 +1,77 @@
++package com.mozg4d.smartphonekeyboard;
++
++import android.app.Notification;
++import android.app.NotificationChannel;
++import android.app.NotificationManager;
++import android.app.PendingIntent;
++import android.app.Service;
++import android.content.Intent;
++import android.content.pm.ServiceInfo;
++import android.os.Build;
++import android.os.IBinder;
++
++public final class HidKeepAliveService extends Service {
++    private static final String CHANNEL_ID = "bluetooth_hid";
++    private static final int NOTIFICATION_ID = 1001;
++
++    @Override
++    public void onCreate() {
++        super.onCreate();
++        createNotificationChannel();
++        Notification notification = buildNotification();
++        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
++            startForeground(
++                    NOTIFICATION_ID,
++                    notification,
++                    ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE
++            );
++        } else {
++            startForeground(NOTIFICATION_ID, notification);
++        }
++    }
++
++    @Override
++    public int onStartCommand(Intent intent, int flags, int startId) {
++        return START_STICKY;
++    }
++
++    @Override
++    public IBinder onBind(Intent intent) {
++        return null;
++    }
++
++    private void createNotificationChannel() {
++        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return;
++        NotificationManager manager = getSystemService(NotificationManager.class);
++        if (manager == null) return;
++        NotificationChannel channel = new NotificationChannel(
++                CHANNEL_ID,
++                "Bluetooth keyboard",
++                NotificationManager.IMPORTANCE_LOW
++        );
++        channel.setDescription("Keeps the Bluetooth HID keyboard available while pairing and connected");
++        channel.setShowBadge(false);
++        manager.createNotificationChannel(channel);
++    }
++
++    private Notification buildNotification() {
++        Intent launchIntent = new Intent(this, MainActivity.class)
++                .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
++        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
++        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) flags |= PendingIntent.FLAG_IMMUTABLE;
++        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, launchIntent, flags);
++
++        Notification.Builder builder = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
++                ? new Notification.Builder(this, CHANNEL_ID)
++                : new Notification.Builder(this);
++
++        return builder
++                .setSmallIcon(android.R.drawable.stat_sys_data_bluetooth)
++                .setContentTitle("Smartphone Keyboard")
++                .setContentText("Bluetooth HID is active")
++                .setContentIntent(pendingIntent)
++                .setOngoing(true)
++                .setCategory(Notification.CATEGORY_SERVICE)
++                .build();
++    }
++}
+diff -ruN orig-v1/android/app/src/main/java/com/mozg4d/smartphonekeyboard/MainActivity.java smartphone-keyboard-android/android/app/src/main/java/com/mozg4d/smartphonekeyboard/MainActivity.java
+--- orig-v1/android/app/src/main/java/com/mozg4d/smartphonekeyboard/MainActivity.java	2026-09-27 11:12:57.000000000 +0000
++++ smartphone-keyboard-android/android/app/src/main/java/com/mozg4d/smartphonekeyboard/MainActivity.java	2026-09-27 11:51:45.379974510 +0000
+@@ -90,6 +90,7 @@
+     private BluetoothHidDevice hidDevice;
+     private BluetoothDevice connectedHost;
+     private boolean hidRegistered;
++    private boolean connectAttemptInProgress;
+     private String pendingHostAddress;
+     private String bluetoothMessage = "Starting Bluetooth…";
+ 
+@@ -146,6 +147,7 @@
+         @Override
+         public void onConnectionStateChanged(BluetoothDevice device, int state) {
+             if (state == BluetoothProfile.STATE_CONNECTED) {
++                connectAttemptInProgress = false;
+                 connectedHost = device;
+                 bluetoothMessage = "Connected to " + safeDeviceName(device);
+                 try {
+@@ -154,12 +156,18 @@
+                 }
+                 sendCurrentReport();
+             } else if (state == BluetoothProfile.STATE_CONNECTING) {
++                connectAttemptInProgress = true;
+                 bluetoothMessage = "Connecting to " + safeDeviceName(device) + "…";
+             } else if (state == BluetoothProfile.STATE_DISCONNECTING) {
+                 bluetoothMessage = "Disconnecting…";
+             } else {
+                 if (connectedHost != null && connectedHost.equals(device)) connectedHost = null;
+-                bluetoothMessage = "Not connected";
++                if (connectAttemptInProgress) {
++                    bluetoothMessage = "HID link refused. Remove this phone from Windows Bluetooth, then pair it again while this app is open.";
++                } else {
++                    bluetoothMessage = "Not connected";
++                }
++                connectAttemptInProgress = false;
+                 clearPressedKeys(false);
+             }
+             notifyWebState();
+@@ -229,6 +237,7 @@
+         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+         if (requestCode != REQUEST_BLUETOOTH_PERMISSIONS) return;
+         if (hasBluetoothPermissions()) {
++            startHidKeepAliveService();
+             startBluetooth();
+         } else {
+             bluetoothMessage = "Nearby devices permission is required for Bluetooth HID";
+@@ -321,6 +330,7 @@
+ 
+     private void ensureBluetoothPermissionsAndStart() {
+         if (hasBluetoothPermissions()) {
++            startHidKeepAliveService();
+             startBluetooth();
+             return;
+         }
+@@ -343,6 +353,20 @@
+                 || checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED;
+     }
+ 
++    private void startHidKeepAliveService() {
++        Intent intent = new Intent(this, HidKeepAliveService.class);
++        try {
++            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
++                startForegroundService(intent);
++            } else {
++                startService(intent);
++            }
++        } catch (RuntimeException e) {
++            bluetoothMessage = "Could not keep Bluetooth HID active: " + e.getClass().getSimpleName();
++            notifyWebState();
++        }
++    }
++
+     private void startBluetooth() {
+         BluetoothManager manager = getSystemService(BluetoothManager.class);
+         bluetoothAdapter = manager == null ? null : manager.getAdapter();
+@@ -413,9 +437,14 @@
+                 return;
+             }
+             pendingHostAddress = null;
++            connectAttemptInProgress = true;
+             bluetoothMessage = "Connecting to " + safeDeviceName(device) + "…";
+             getPreferences(MODE_PRIVATE).edit().putString(PREF_LAST_HOST, address).apply();
+-            hidDevice.connect(device);
++            boolean accepted = hidDevice.connect(device);
++            if (!accepted) {
++                connectAttemptInProgress = false;
++                bluetoothMessage = "Android rejected the HID connect request. Remove the phone from Windows Bluetooth and pair again while this app is open.";
++            }
+         } catch (IllegalArgumentException e) {
+             bluetoothMessage = "Invalid Bluetooth device address";
+         } catch (SecurityException e) {
+@@ -441,7 +470,7 @@
+                     Intent discoverable = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+                     discoverable.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+                     startActivity(discoverable);
+-                    bluetoothMessage = "Discoverable for up to 5 minutes — add this phone from Windows Bluetooth settings";
++                    bluetoothMessage = "Ready for HID pairing. On Windows: remove any old phone entry, then Add device → Bluetooth and select this phone.";
+                 }
+             } catch (SecurityException e) {
+                 bluetoothMessage = "Bluetooth permission denied";
+@@ -479,6 +508,7 @@
+             state.put("bluetoothEnabled", bluetoothAdapter != null && bluetoothAdapter.isEnabled());
+             state.put("hidAvailable", hidDevice != null);
+             state.put("registered", hidRegistered);
++            state.put("foregroundService", true);
+             state.put("connected", connectedHost != null);
+             state.put("message", bluetoothMessage);
+             state.put("deviceName", connectedHost == null ? "" : safeDeviceName(connectedHost));
